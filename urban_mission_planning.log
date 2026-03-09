@@ -1,0 +1,333 @@
+2026-02-28 20:27:29 - src.image_preprocessor - INFO - ImagePreprocessor initialized with dimension range: 1500x1500 to 8192x8192
+2026-02-28 20:27:29 - src.solution_generator - INFO - SolutionGenerator initialized successfully
+2026-02-28 20:27:29 - src.solution_generator - INFO - Configuration: {'DATA_DIR': 'data', 'MODELS_DIR': 'models', 'OUTPUTS_DIR': 'outputs', 'MIN_IMAGE_SIZE': 1500, 'MAX_IMAGE_SIZE': 8192, 'PIXEL_MEAN': [0.485, 0.456, 0.406], 'PIXEL_STD': [0.229, 0.224, 0.225], 'MODEL_ARCHITECTURE': 'unet', 'ENCODER_NAME': 'resnet34', 'ENCODER_WEIGHTS': 'imagenet', 'IN_CHANNELS': 3, 'OUT_CLASSES': 1, 'LEARNING_RATE': 0.001, 'BATCH_SIZE': 4, 'NUM_EPOCHS': 50, 'LOSS_FUNCTION': 'dice', 'OPTIMIZER': 'adam', 'DEVICE': 'cuda', 'APPLY_MORPHOLOGICAL_CLOSING': True, 'MORPHOLOGICAL_KERNEL_SIZE': 3, 'MORPHOLOGICAL_ITERATIONS': 1, 'CONNECTIVITY': 8, 'MAX_SEARCH_DISTANCE': 50, 'APPLY_SKELETONIZATION': True, 'PATHFINDING_ALGORITHM': 'astar', 'SIMPLIFICATION_EPSILON': 2.0, 'MAX_WAYPOINTS_BEFORE_SIMPLIFICATION': 100, 'VIOLATION_PENALTY': 50, 'BASE_SCORE': 1000, 'ENABLE_GPU_ACCELERATION': True, 'ENABLE_PREPROCESSING_CACHE': True, 'CACHE_DIR': '.cache', 'MEMORY_LIMIT_GB': 1.0, 'ENABLE_PROFILING': False, 'BATCH_INFERENCE_SIZE': 4, 'RANDOM_SEED': 42, 'ENABLE_DETERMINISTIC': True, 'SAVE_HYPERPARAMETERS': True, 'LOG_LEVEL': 'INFO', 'LOG_FORMAT': '%(asctime)s - %(name)s - %(levelname)s - %(message)s', 'LOG_FILE': 'urban_mission_planning.log', 'to_dict': <classmethod(<function Config.to_dict at 0x000001EFF8223100>)>, 'update_from_dict': <classmethod(<function Config.update_from_dict at 0x000001EFF82231A0>)>, 'validate': <classmethod(<function Config.validate at 0x000001EFF8223240>)>}
+2026-02-28 20:27:29 - src.solution_generator - INFO - Performance optimization enabled: GPU=False, Cache=True
+2026-02-28 20:27:29 - src.image_preprocessor - INFO - ImagePreprocessor initialized with dimension range: 1500x1500 to 8192x8192
+2026-02-28 20:27:29 - src.image_preprocessor - INFO - Starting preprocessing pipeline for: C:\Users\shrey\ump_data\test\sats\test_001.tiff
+2026-02-28 20:27:29 - src.image_preprocessor - INFO - Loading TIFF image from: C:\Users\shrey\ump_data\test\sats\test_001.tiff
+2026-02-28 20:27:29 - src.image_preprocessor - INFO - Successfully loaded TIFF image with shape (1500, 1500, 3)
+2026-02-28 20:27:29 - src.image_preprocessor - INFO - Preprocessing complete. Output tensor shape: torch.Size([3, 1500, 1500])
+2026-02-28 20:27:31 - src.solution_generator - INFO - ================================================================================
+2026-02-28 20:27:31 - src.solution_generator - INFO - Processing image: C:\Users\shrey\ump_data\test\sats\test_001.tiff
+2026-02-28 20:27:31 - src.solution_generator - INFO - Start: (119, 0), Goal: (1446, 1440)
+2026-02-28 20:27:31 - src.solution_generator - INFO - ================================================================================
+2026-02-28 20:27:31 - src.solution_generator - INFO - Step 1: Loading and preprocessing image...
+2026-02-28 20:27:31 - src.solution_generator - INFO - Using cached preprocessing result
+2026-02-28 20:27:31 - src.solution_generator - INFO - Preprocessing complete in 0.02s
+2026-02-28 20:27:31 - src.solution_generator - INFO - Step 2: Segmenting roads...
+2026-02-28 20:27:34 - src.solution_generator - INFO - Segmentation complete in 2.29s
+2026-02-28 20:27:34 - src.solution_generator - INFO - Road pixels: 148218 (6.6% of image)
+2026-02-28 20:27:34 - src.solution_generator - INFO - Step 3: Building road network graph...
+2026-02-28 20:27:35 - src.solution_generator - INFO - Graph construction complete in 0.83s
+2026-02-28 20:27:35 - src.solution_generator - INFO - Graph: 16321 nodes, 16446 edges
+2026-02-28 20:27:35 - src.solution_generator - WARNING - Memory limit exceeded, performing cleanup
+2026-02-28 20:27:35 - src.solution_generator - INFO - Step 4: Finding path using A* algorithm...
+2026-02-28 20:27:35 - src.solution_generator - WARNING - No path found between start and goal
+2026-02-28 20:27:35 - src.solution_generator - WARNING - Applying fallback strategy: direct line path
+2026-02-28 20:27:35 - src.solution_generator - INFO - Step 5: Simplifying path...
+2026-02-28 20:27:35 - src.solution_generator - INFO - Path has 2 waypoints, no simplification needed
+2026-02-28 20:27:35 - src.solution_generator - INFO - Step 6: Validating path...
+2026-02-28 20:27:35 - src.solution_generator - INFO - Validation complete in 0.00s
+2026-02-28 20:27:35 - src.solution_generator - INFO - Path length: 1958.20
+2026-02-28 20:27:35 - src.solution_generator - INFO - Violations: 1140
+2026-02-28 20:27:35 - src.solution_generator - INFO - Score: -57958.20
+2026-02-28 20:27:35 - src.solution_generator - INFO - Valid: False
+2026-02-28 20:27:35 - src.solution_generator - WARNING - Validation errors:
+2026-02-28 20:27:35 - src.solution_generator - WARNING -   - Segment 0 from (119, 0) to (1446, 1440) has 1140 off-road/out-of-bounds pixels
+2026-02-28 20:27:35 - src.solution_generator - INFO - Total processing time: 3.15s
+2026-02-28 20:27:35 - src.solution_generator - INFO - Performance: Cache hit rate: 100.0%, Memory warnings: 3
+2026-02-28 20:27:35 - src.solution_generator - INFO - ================================================================================
+2026-02-28 20:27:35 - src.solution_generator - INFO - Processing complete
+2026-02-28 20:27:35 - src.solution_generator - INFO - ================================================================================
+2026-02-28 20:27:35 - src.image_preprocessor - INFO - Starting preprocessing pipeline for: C:\Users\shrey\ump_data\test\sats\test_002.tiff
+2026-02-28 20:27:35 - src.image_preprocessor - INFO - Loading TIFF image from: C:\Users\shrey\ump_data\test\sats\test_002.tiff
+2026-02-28 20:27:35 - src.image_preprocessor - INFO - Successfully loaded TIFF image with shape (1500, 1500, 3)
+2026-02-28 20:27:35 - src.image_preprocessor - INFO - Preprocessing complete. Output tensor shape: torch.Size([3, 1500, 1500])
+2026-02-28 20:27:37 - src.solution_generator - INFO - ================================================================================
+2026-02-28 20:27:37 - src.solution_generator - INFO - Processing image: C:\Users\shrey\ump_data\test\sats\test_002.tiff
+2026-02-28 20:27:37 - src.solution_generator - INFO - Start: (10, 10), Goal: (1490, 1490)
+2026-02-28 20:27:37 - src.solution_generator - INFO - ================================================================================
+2026-02-28 20:27:37 - src.solution_generator - INFO - Step 1: Loading and preprocessing image...
+2026-02-28 20:27:37 - src.solution_generator - INFO - Using cached preprocessing result
+2026-02-28 20:27:37 - src.solution_generator - INFO - Preprocessing complete in 0.02s
+2026-02-28 20:27:37 - src.solution_generator - INFO - Step 2: Segmenting roads...
+2026-02-28 20:27:39 - src.solution_generator - INFO - Segmentation complete in 2.26s
+2026-02-28 20:27:39 - src.solution_generator - INFO - Road pixels: 0 (0.0% of image)
+2026-02-28 20:27:39 - src.solution_generator - INFO - Step 3: Building road network graph...
+2026-02-28 20:27:39 - src.solution_generator - ERROR - Graph construction failed: road_mask must contain at least one road pixel (value = 1)
+2026-02-28 20:27:39 - src.image_preprocessor - INFO - Starting preprocessing pipeline for: C:\Users\shrey\ump_data\test\sats\test_003.tiff
+2026-02-28 20:27:39 - src.image_preprocessor - INFO - Loading TIFF image from: C:\Users\shrey\ump_data\test\sats\test_003.tiff
+2026-02-28 20:27:39 - src.image_preprocessor - INFO - Successfully loaded TIFF image with shape (1500, 1500, 3)
+2026-02-28 20:27:39 - src.image_preprocessor - INFO - Preprocessing complete. Output tensor shape: torch.Size([3, 1500, 1500])
+2026-02-28 20:27:41 - src.solution_generator - INFO - ================================================================================
+2026-02-28 20:27:42 - src.solution_generator - INFO - Processing image: C:\Users\shrey\ump_data\test\sats\test_003.tiff
+2026-02-28 20:27:42 - src.solution_generator - INFO - Start: (1397, 686), Goal: (1426, 1499)
+2026-02-28 20:27:42 - src.solution_generator - INFO - ================================================================================
+2026-02-28 20:27:42 - src.solution_generator - INFO - Step 1: Loading and preprocessing image...
+2026-02-28 20:27:42 - src.solution_generator - INFO - Using cached preprocessing result
+2026-02-28 20:27:42 - src.solution_generator - INFO - Preprocessing complete in 0.02s
+2026-02-28 20:27:42 - src.solution_generator - INFO - Step 2: Segmenting roads...
+2026-02-28 20:27:44 - src.solution_generator - INFO - Segmentation complete in 2.26s
+2026-02-28 20:27:44 - src.solution_generator - INFO - Road pixels: 1338 (0.1% of image)
+2026-02-28 20:27:44 - src.solution_generator - INFO - Step 3: Building road network graph...
+2026-02-28 20:27:44 - src.solution_generator - INFO - Graph construction complete in 0.65s
+2026-02-28 20:27:44 - src.solution_generator - INFO - Graph: 176 nodes, 174 edges
+2026-02-28 20:27:44 - src.solution_generator - WARNING - Memory limit exceeded, performing cleanup
+2026-02-28 20:27:45 - src.solution_generator - INFO - Step 4: Finding path using A* algorithm...
+2026-02-28 20:27:45 - src.solution_generator - WARNING - No path found between start and goal
+2026-02-28 20:27:45 - src.solution_generator - WARNING - Applying fallback strategy: direct line path
+2026-02-28 20:27:45 - src.solution_generator - INFO - Step 5: Simplifying path...
+2026-02-28 20:27:45 - src.solution_generator - INFO - Path has 2 waypoints, no simplification needed
+2026-02-28 20:27:45 - src.solution_generator - INFO - Step 6: Validating path...
+2026-02-28 20:27:45 - src.solution_generator - INFO - Validation complete in 0.00s
+2026-02-28 20:27:45 - src.solution_generator - INFO - Path length: 813.52
+2026-02-28 20:27:45 - src.solution_generator - INFO - Violations: 800
+2026-02-28 20:27:45 - src.solution_generator - INFO - Score: -39813.52
+2026-02-28 20:27:45 - src.solution_generator - INFO - Valid: False
+2026-02-28 20:27:45 - src.solution_generator - WARNING - Validation errors:
+2026-02-28 20:27:45 - src.solution_generator - WARNING -   - Segment 0 from (1397, 686) to (1426, 1499) has 800 off-road/out-of-bounds pixels
+2026-02-28 20:27:45 - src.solution_generator - INFO - Total processing time: 2.94s
+2026-02-28 20:27:45 - src.solution_generator - INFO - Performance: Cache hit rate: 100.0%, Memory warnings: 8
+2026-02-28 20:27:45 - src.solution_generator - INFO - ================================================================================
+2026-02-28 20:27:45 - src.solution_generator - INFO - Processing complete
+2026-02-28 20:27:45 - src.solution_generator - INFO - ================================================================================
+2026-02-28 20:27:45 - src.image_preprocessor - INFO - Starting preprocessing pipeline for: C:\Users\shrey\ump_data\test\sats\test_004.tiff
+2026-02-28 20:27:45 - src.image_preprocessor - INFO - Loading TIFF image from: C:\Users\shrey\ump_data\test\sats\test_004.tiff
+2026-02-28 20:27:45 - src.image_preprocessor - INFO - Successfully loaded TIFF image with shape (1500, 1500, 3)
+2026-02-28 20:27:45 - src.image_preprocessor - INFO - Preprocessing complete. Output tensor shape: torch.Size([3, 1500, 1500])
+2026-02-28 20:27:47 - src.solution_generator - INFO - ================================================================================
+2026-02-28 20:27:47 - src.solution_generator - INFO - Processing image: C:\Users\shrey\ump_data\test\sats\test_004.tiff
+2026-02-28 20:27:47 - src.solution_generator - INFO - Start: (19, 0), Goal: (1218, 1499)
+2026-02-28 20:27:47 - src.solution_generator - INFO - ================================================================================
+2026-02-28 20:27:47 - src.solution_generator - INFO - Step 1: Loading and preprocessing image...
+2026-02-28 20:27:47 - src.solution_generator - INFO - Using cached preprocessing result
+2026-02-28 20:27:47 - src.solution_generator - INFO - Preprocessing complete in 0.02s
+2026-02-28 20:27:47 - src.solution_generator - INFO - Step 2: Segmenting roads...
+2026-02-28 20:27:49 - src.solution_generator - INFO - Segmentation complete in 2.26s
+2026-02-28 20:27:49 - src.solution_generator - INFO - Road pixels: 163148 (7.3% of image)
+2026-02-28 20:27:49 - src.solution_generator - INFO - Step 3: Building road network graph...
+2026-02-28 20:27:50 - src.solution_generator - INFO - Graph construction complete in 0.79s
+2026-02-28 20:27:50 - src.solution_generator - INFO - Graph: 16625 nodes, 16719 edges
+2026-02-28 20:27:50 - src.solution_generator - WARNING - Memory limit exceeded, performing cleanup
+2026-02-28 20:27:50 - src.solution_generator - INFO - Step 4: Finding path using A* algorithm...
+2026-02-28 20:27:50 - src.solution_generator - INFO - Path found with 1960 waypoints in 0.02s
+2026-02-28 20:27:50 - src.solution_generator - INFO - Step 5: Simplifying path...
+2026-02-28 20:27:50 - src.solution_generator - INFO - Path simplified: 1960 -> 48 waypoints
+2026-02-28 20:27:50 - src.solution_generator - INFO - Step 6: Validating path...
+2026-02-28 20:27:50 - src.solution_generator - INFO - Validation complete in 0.00s
+2026-02-28 20:27:50 - src.solution_generator - INFO - Path length: 2163.85
+2026-02-28 20:27:50 - src.solution_generator - INFO - Violations: 0
+2026-02-28 20:27:50 - src.solution_generator - INFO - Score: -1163.85
+2026-02-28 20:27:50 - src.solution_generator - INFO - Valid: True
+2026-02-28 20:27:50 - src.solution_generator - INFO - Total processing time: 3.11s
+2026-02-28 20:27:50 - src.solution_generator - INFO - Performance: Cache hit rate: 100.0%, Memory warnings: 11
+2026-02-28 20:27:50 - src.solution_generator - INFO - ================================================================================
+2026-02-28 20:27:50 - src.solution_generator - INFO - Processing complete
+2026-02-28 20:27:50 - src.solution_generator - INFO - ================================================================================
+2026-02-28 20:27:50 - src.image_preprocessor - INFO - Starting preprocessing pipeline for: C:\Users\shrey\ump_data\test\sats\test_005.tiff
+2026-02-28 20:27:50 - src.image_preprocessor - INFO - Loading TIFF image from: C:\Users\shrey\ump_data\test\sats\test_005.tiff
+2026-02-28 20:27:50 - src.image_preprocessor - INFO - Successfully loaded TIFF image with shape (1500, 1500, 3)
+2026-02-28 20:27:50 - src.image_preprocessor - INFO - Preprocessing complete. Output tensor shape: torch.Size([3, 1500, 1500])
+2026-02-28 20:27:52 - src.solution_generator - INFO - ================================================================================
+2026-02-28 20:27:52 - src.solution_generator - INFO - Processing image: C:\Users\shrey\ump_data\test\sats\test_005.tiff
+2026-02-28 20:27:52 - src.solution_generator - INFO - Start: (142, 0), Goal: (1459, 1499)
+2026-02-28 20:27:52 - src.solution_generator - INFO - ================================================================================
+2026-02-28 20:27:52 - src.solution_generator - INFO - Step 1: Loading and preprocessing image...
+2026-02-28 20:27:52 - src.solution_generator - INFO - Using cached preprocessing result
+2026-02-28 20:27:52 - src.solution_generator - INFO - Preprocessing complete in 0.02s
+2026-02-28 20:27:52 - src.solution_generator - INFO - Step 2: Segmenting roads...
+2026-02-28 20:27:55 - src.solution_generator - INFO - Segmentation complete in 2.24s
+2026-02-28 20:27:55 - src.solution_generator - INFO - Road pixels: 134308 (6.0% of image)
+2026-02-28 20:27:55 - src.solution_generator - INFO - Step 3: Building road network graph...
+2026-02-28 20:27:55 - src.solution_generator - INFO - Graph construction complete in 0.81s
+2026-02-28 20:27:55 - src.solution_generator - INFO - Graph: 14739 nodes, 14819 edges
+2026-02-28 20:27:55 - src.solution_generator - WARNING - Memory limit exceeded, performing cleanup
+2026-02-28 20:27:56 - src.solution_generator - INFO - Step 4: Finding path using A* algorithm...
+2026-02-28 20:27:56 - src.solution_generator - WARNING - No path found between start and goal
+2026-02-28 20:27:56 - src.solution_generator - WARNING - Applying fallback strategy: direct line path
+2026-02-28 20:27:56 - src.solution_generator - INFO - Step 5: Simplifying path...
+2026-02-28 20:27:56 - src.solution_generator - INFO - Path has 2 waypoints, no simplification needed
+2026-02-28 20:27:56 - src.solution_generator - INFO - Step 6: Validating path...
+2026-02-28 20:27:56 - src.solution_generator - INFO - Validation complete in 0.00s
+2026-02-28 20:27:56 - src.solution_generator - INFO - Path length: 1995.37
+2026-02-28 20:27:56 - src.solution_generator - INFO - Violations: 1386
+2026-02-28 20:27:56 - src.solution_generator - INFO - Score: -70295.37
+2026-02-28 20:27:56 - src.solution_generator - INFO - Valid: False
+2026-02-28 20:27:56 - src.solution_generator - WARNING - Validation errors:
+2026-02-28 20:27:56 - src.solution_generator - WARNING -   - Segment 0 from (142, 0) to (1459, 1499) has 1386 off-road/out-of-bounds pixels
+2026-02-28 20:27:56 - src.solution_generator - INFO - Total processing time: 3.12s
+2026-02-28 20:27:56 - src.solution_generator - INFO - Performance: Cache hit rate: 100.0%, Memory warnings: 14
+2026-02-28 20:27:56 - src.solution_generator - INFO - ================================================================================
+2026-02-28 20:27:56 - src.solution_generator - INFO - Processing complete
+2026-02-28 20:27:56 - src.solution_generator - INFO - ================================================================================
+2026-02-28 20:27:56 - src.image_preprocessor - INFO - Starting preprocessing pipeline for: C:\Users\shrey\ump_data\test\sats\test_006.tiff
+2026-02-28 20:27:56 - src.image_preprocessor - INFO - Loading TIFF image from: C:\Users\shrey\ump_data\test\sats\test_006.tiff
+2026-02-28 20:27:56 - src.image_preprocessor - INFO - Successfully loaded TIFF image with shape (1500, 1500, 3)
+2026-02-28 20:27:56 - src.image_preprocessor - INFO - Preprocessing complete. Output tensor shape: torch.Size([3, 1500, 1500])
+2026-02-28 20:27:58 - src.solution_generator - INFO - ================================================================================
+2026-02-28 20:27:58 - src.solution_generator - INFO - Processing image: C:\Users\shrey\ump_data\test\sats\test_006.tiff
+2026-02-28 20:27:58 - src.solution_generator - INFO - Start: (449, 0), Goal: (1221, 1499)
+2026-02-28 20:27:58 - src.solution_generator - INFO - ================================================================================
+2026-02-28 20:27:58 - src.solution_generator - INFO - Step 1: Loading and preprocessing image...
+2026-02-28 20:27:58 - src.solution_generator - INFO - Using cached preprocessing result
+2026-02-28 20:27:58 - src.solution_generator - INFO - Preprocessing complete in 0.02s
+2026-02-28 20:27:58 - src.solution_generator - INFO - Step 2: Segmenting roads...
+2026-02-28 20:28:00 - src.solution_generator - INFO - Segmentation complete in 2.26s
+2026-02-28 20:28:00 - src.solution_generator - INFO - Road pixels: 47650 (2.1% of image)
+2026-02-28 20:28:00 - src.solution_generator - INFO - Step 3: Building road network graph...
+2026-02-28 20:28:01 - src.solution_generator - INFO - Graph construction complete in 0.73s
+2026-02-28 20:28:01 - src.solution_generator - INFO - Graph: 5600 nodes, 5623 edges
+2026-02-28 20:28:01 - src.solution_generator - WARNING - Memory limit exceeded, performing cleanup
+2026-02-28 20:28:01 - src.solution_generator - INFO - Step 4: Finding path using A* algorithm...
+2026-02-28 20:28:01 - src.solution_generator - WARNING - No path found between start and goal
+2026-02-28 20:28:01 - src.solution_generator - WARNING - Applying fallback strategy: direct line path
+2026-02-28 20:28:01 - src.solution_generator - INFO - Step 5: Simplifying path...
+2026-02-28 20:28:01 - src.solution_generator - INFO - Path has 2 waypoints, no simplification needed
+2026-02-28 20:28:01 - src.solution_generator - INFO - Step 6: Validating path...
+2026-02-28 20:28:01 - src.solution_generator - INFO - Validation complete in 0.00s
+2026-02-28 20:28:01 - src.solution_generator - INFO - Path length: 1686.12
+2026-02-28 20:28:01 - src.solution_generator - INFO - Violations: 1427
+2026-02-28 20:28:01 - src.solution_generator - INFO - Score: -72036.12
+2026-02-28 20:28:01 - src.solution_generator - INFO - Valid: False
+2026-02-28 20:28:01 - src.solution_generator - WARNING - Validation errors:
+2026-02-28 20:28:01 - src.solution_generator - WARNING -   - Segment 0 from (449, 0) to (1221, 1499) has 1427 off-road/out-of-bounds pixels
+2026-02-28 20:28:01 - src.solution_generator - INFO - Total processing time: 3.01s
+2026-02-28 20:28:01 - src.solution_generator - INFO - Performance: Cache hit rate: 100.0%, Memory warnings: 17
+2026-02-28 20:28:01 - src.solution_generator - INFO - ================================================================================
+2026-02-28 20:28:01 - src.solution_generator - INFO - Processing complete
+2026-02-28 20:28:01 - src.solution_generator - INFO - ================================================================================
+2026-02-28 20:28:01 - src.image_preprocessor - INFO - Starting preprocessing pipeline for: C:\Users\shrey\ump_data\test\sats\test_007.tiff
+2026-02-28 20:28:01 - src.image_preprocessor - INFO - Loading TIFF image from: C:\Users\shrey\ump_data\test\sats\test_007.tiff
+2026-02-28 20:28:01 - src.image_preprocessor - INFO - Successfully loaded TIFF image with shape (1500, 1500, 3)
+2026-02-28 20:28:01 - src.image_preprocessor - INFO - Preprocessing complete. Output tensor shape: torch.Size([3, 1500, 1500])
+2026-02-28 20:28:03 - src.solution_generator - INFO - ================================================================================
+2026-02-28 20:28:03 - src.solution_generator - INFO - Processing image: C:\Users\shrey\ump_data\test\sats\test_007.tiff
+2026-02-28 20:28:03 - src.solution_generator - INFO - Start: (1281, 651), Goal: (510, 1429)
+2026-02-28 20:28:03 - src.solution_generator - INFO - ================================================================================
+2026-02-28 20:28:03 - src.solution_generator - INFO - Step 1: Loading and preprocessing image...
+2026-02-28 20:28:03 - src.solution_generator - INFO - Using cached preprocessing result
+2026-02-28 20:28:03 - src.solution_generator - INFO - Preprocessing complete in 0.02s
+2026-02-28 20:28:03 - src.solution_generator - INFO - Step 2: Segmenting roads...
+2026-02-28 20:28:06 - src.solution_generator - INFO - Segmentation complete in 2.26s
+2026-02-28 20:28:06 - src.solution_generator - INFO - Road pixels: 36767 (1.6% of image)
+2026-02-28 20:28:06 - src.solution_generator - INFO - Step 3: Building road network graph...
+2026-02-28 20:28:06 - src.solution_generator - INFO - Graph construction complete in 0.70s
+2026-02-28 20:28:06 - src.solution_generator - INFO - Graph: 4110 nodes, 4148 edges
+2026-02-28 20:28:06 - src.solution_generator - WARNING - Memory limit exceeded, performing cleanup
+2026-02-28 20:28:06 - src.solution_generator - INFO - Step 4: Finding path using A* algorithm...
+2026-02-28 20:28:07 - src.solution_generator - INFO - Path found with 1459 waypoints in 0.01s
+2026-02-28 20:28:07 - src.solution_generator - INFO - Step 5: Simplifying path...
+2026-02-28 20:28:07 - src.solution_generator - INFO - Path simplified: 1459 -> 33 waypoints
+2026-02-28 20:28:07 - src.solution_generator - INFO - Step 6: Validating path...
+2026-02-28 20:28:07 - src.solution_generator - INFO - Validation complete in 0.00s
+2026-02-28 20:28:07 - src.solution_generator - INFO - Path length: 1543.30
+2026-02-28 20:28:07 - src.solution_generator - INFO - Violations: 0
+2026-02-28 20:28:07 - src.solution_generator - INFO - Score: -543.30
+2026-02-28 20:28:07 - src.solution_generator - INFO - Valid: True
+2026-02-28 20:28:07 - src.solution_generator - INFO - Total processing time: 3.00s
+2026-02-28 20:28:07 - src.solution_generator - INFO - Performance: Cache hit rate: 100.0%, Memory warnings: 20
+2026-02-28 20:28:07 - src.solution_generator - INFO - ================================================================================
+2026-02-28 20:28:07 - src.solution_generator - INFO - Processing complete
+2026-02-28 20:28:07 - src.solution_generator - INFO - ================================================================================
+2026-02-28 20:28:07 - src.image_preprocessor - INFO - Starting preprocessing pipeline for: C:\Users\shrey\ump_data\test\sats\test_008.tiff
+2026-02-28 20:28:07 - src.image_preprocessor - INFO - Loading TIFF image from: C:\Users\shrey\ump_data\test\sats\test_008.tiff
+2026-02-28 20:28:07 - src.image_preprocessor - INFO - Successfully loaded TIFF image with shape (1500, 1500, 3)
+2026-02-28 20:28:07 - src.image_preprocessor - INFO - Preprocessing complete. Output tensor shape: torch.Size([3, 1500, 1500])
+2026-02-28 20:28:09 - src.solution_generator - INFO - ================================================================================
+2026-02-28 20:28:09 - src.solution_generator - INFO - Processing image: C:\Users\shrey\ump_data\test\sats\test_008.tiff
+2026-02-28 20:28:09 - src.solution_generator - INFO - Start: (1212, 27), Goal: (170, 1396)
+2026-02-28 20:28:09 - src.solution_generator - INFO - ================================================================================
+2026-02-28 20:28:09 - src.solution_generator - INFO - Step 1: Loading and preprocessing image...
+2026-02-28 20:28:09 - src.solution_generator - INFO - Using cached preprocessing result
+2026-02-28 20:28:09 - src.solution_generator - INFO - Preprocessing complete in 0.02s
+2026-02-28 20:28:09 - src.solution_generator - INFO - Step 2: Segmenting roads...
+2026-02-28 20:28:11 - src.solution_generator - INFO - Segmentation complete in 2.24s
+2026-02-28 20:28:11 - src.solution_generator - INFO - Road pixels: 48369 (2.1% of image)
+2026-02-28 20:28:11 - src.solution_generator - INFO - Step 3: Building road network graph...
+2026-02-28 20:28:12 - src.solution_generator - INFO - Graph construction complete in 0.72s
+2026-02-28 20:28:12 - src.solution_generator - INFO - Graph: 5616 nodes, 5641 edges
+2026-02-28 20:28:12 - src.solution_generator - WARNING - Memory limit exceeded, performing cleanup
+2026-02-28 20:28:12 - src.solution_generator - INFO - Step 4: Finding path using A* algorithm...
+2026-02-28 20:28:12 - src.solution_generator - WARNING - No path found between start and goal
+2026-02-28 20:28:12 - src.solution_generator - WARNING - Applying fallback strategy: direct line path
+2026-02-28 20:28:12 - src.solution_generator - INFO - Step 5: Simplifying path...
+2026-02-28 20:28:12 - src.solution_generator - INFO - Path has 2 waypoints, no simplification needed
+2026-02-28 20:28:12 - src.solution_generator - INFO - Step 6: Validating path...
+2026-02-28 20:28:12 - src.solution_generator - INFO - Validation complete in 0.00s
+2026-02-28 20:28:12 - src.solution_generator - INFO - Path length: 1720.44
+2026-02-28 20:28:12 - src.solution_generator - INFO - Violations: 1323
+2026-02-28 20:28:12 - src.solution_generator - INFO - Score: -66870.44
+2026-02-28 20:28:12 - src.solution_generator - INFO - Valid: False
+2026-02-28 20:28:12 - src.solution_generator - WARNING - Validation errors:
+2026-02-28 20:28:12 - src.solution_generator - WARNING -   - Segment 0 from (1212, 27) to (170, 1396) has 1323 off-road/out-of-bounds pixels
+2026-02-28 20:28:12 - src.solution_generator - INFO - Total processing time: 2.99s
+2026-02-28 20:28:12 - src.solution_generator - INFO - Performance: Cache hit rate: 100.0%, Memory warnings: 23
+2026-02-28 20:28:12 - src.solution_generator - INFO - ================================================================================
+2026-02-28 20:28:12 - src.solution_generator - INFO - Processing complete
+2026-02-28 20:28:12 - src.solution_generator - INFO - ================================================================================
+2026-02-28 20:28:12 - src.image_preprocessor - INFO - Starting preprocessing pipeline for: C:\Users\shrey\ump_data\test\sats\test_009.tiff
+2026-02-28 20:28:12 - src.image_preprocessor - INFO - Loading TIFF image from: C:\Users\shrey\ump_data\test\sats\test_009.tiff
+2026-02-28 20:28:12 - src.image_preprocessor - INFO - Successfully loaded TIFF image with shape (1500, 1500, 3)
+2026-02-28 20:28:12 - src.image_preprocessor - INFO - Preprocessing complete. Output tensor shape: torch.Size([3, 1500, 1500])
+2026-02-28 20:28:14 - src.solution_generator - INFO - ================================================================================
+2026-02-28 20:28:14 - src.solution_generator - INFO - Processing image: C:\Users\shrey\ump_data\test\sats\test_009.tiff
+2026-02-28 20:28:14 - src.solution_generator - INFO - Start: (465, 43), Goal: (25, 236)
+2026-02-28 20:28:14 - src.solution_generator - INFO - ================================================================================
+2026-02-28 20:28:14 - src.solution_generator - INFO - Step 1: Loading and preprocessing image...
+2026-02-28 20:28:14 - src.solution_generator - INFO - Using cached preprocessing result
+2026-02-28 20:28:14 - src.solution_generator - INFO - Preprocessing complete in 0.02s
+2026-02-28 20:28:14 - src.solution_generator - INFO - Step 2: Segmenting roads...
+2026-02-28 20:28:17 - src.solution_generator - INFO - Segmentation complete in 2.24s
+2026-02-28 20:28:17 - src.solution_generator - INFO - Road pixels: 7212 (0.3% of image)
+2026-02-28 20:28:17 - src.solution_generator - INFO - Step 3: Building road network graph...
+2026-02-28 20:28:17 - src.solution_generator - INFO - Graph construction complete in 0.66s
+2026-02-28 20:28:17 - src.solution_generator - INFO - Graph: 887 nodes, 896 edges
+2026-02-28 20:28:17 - src.solution_generator - WARNING - Memory limit exceeded, performing cleanup
+2026-02-28 20:28:17 - src.solution_generator - INFO - Step 4: Finding path using A* algorithm...
+2026-02-28 20:28:17 - src.solution_generator - INFO - Path found with 638 waypoints in 0.00s
+2026-02-28 20:28:17 - src.solution_generator - INFO - Step 5: Simplifying path...
+2026-02-28 20:28:17 - src.solution_generator - INFO - Path simplified: 638 -> 7 waypoints
+2026-02-28 20:28:17 - src.solution_generator - INFO - Step 6: Validating path...
+2026-02-28 20:28:17 - src.solution_generator - INFO - Validation complete in 0.00s
+2026-02-28 20:28:17 - src.solution_generator - INFO - Path length: 639.30
+2026-02-28 20:28:17 - src.solution_generator - INFO - Violations: 0
+2026-02-28 20:28:17 - src.solution_generator - INFO - Score: 360.70
+2026-02-28 20:28:17 - src.solution_generator - INFO - Valid: True
+2026-02-28 20:28:17 - src.solution_generator - INFO - Total processing time: 2.93s
+2026-02-28 20:28:17 - src.solution_generator - INFO - Performance: Cache hit rate: 100.0%, Memory warnings: 26
+2026-02-28 20:28:17 - src.solution_generator - INFO - ================================================================================
+2026-02-28 20:28:17 - src.solution_generator - INFO - Processing complete
+2026-02-28 20:28:17 - src.solution_generator - INFO - ================================================================================
+2026-02-28 20:28:17 - src.image_preprocessor - INFO - Starting preprocessing pipeline for: C:\Users\shrey\ump_data\test\sats\test_010.tiff
+2026-02-28 20:28:17 - src.image_preprocessor - INFO - Loading TIFF image from: C:\Users\shrey\ump_data\test\sats\test_010.tiff
+2026-02-28 20:28:17 - src.image_preprocessor - INFO - Successfully loaded TIFF image with shape (1500, 1500, 3)
+2026-02-28 20:28:17 - src.image_preprocessor - INFO - Preprocessing complete. Output tensor shape: torch.Size([3, 1500, 1500])
+2026-02-28 20:28:20 - src.solution_generator - INFO - ================================================================================
+2026-02-28 20:28:20 - src.solution_generator - INFO - Processing image: C:\Users\shrey\ump_data\test\sats\test_010.tiff
+2026-02-28 20:28:20 - src.solution_generator - INFO - Start: (1478, 300), Goal: (272, 427)
+2026-02-28 20:28:20 - src.solution_generator - INFO - ================================================================================
+2026-02-28 20:28:20 - src.solution_generator - INFO - Step 1: Loading and preprocessing image...
+2026-02-28 20:28:20 - src.solution_generator - INFO - Using cached preprocessing result
+2026-02-28 20:28:20 - src.solution_generator - INFO - Preprocessing complete in 0.02s
+2026-02-28 20:28:20 - src.solution_generator - INFO - Step 2: Segmenting roads...
+2026-02-28 20:28:22 - src.solution_generator - INFO - Segmentation complete in 2.24s
+2026-02-28 20:28:22 - src.solution_generator - INFO - Road pixels: 44109 (2.0% of image)
+2026-02-28 20:28:22 - src.solution_generator - INFO - Step 3: Building road network graph...
+2026-02-28 20:28:23 - src.solution_generator - INFO - Graph construction complete in 0.69s
+2026-02-28 20:28:23 - src.solution_generator - INFO - Graph: 4971 nodes, 5014 edges
+2026-02-28 20:28:23 - src.solution_generator - WARNING - Memory limit exceeded, performing cleanup
+2026-02-28 20:28:23 - src.solution_generator - INFO - Step 4: Finding path using A* algorithm...
+2026-02-28 20:28:23 - src.solution_generator - INFO - Path found with 1524 waypoints in 0.01s
+2026-02-28 20:28:23 - src.solution_generator - INFO - Step 5: Simplifying path...
+2026-02-28 20:28:23 - src.solution_generator - INFO - Path simplified: 1524 -> 27 waypoints
+2026-02-28 20:28:23 - src.solution_generator - INFO - Step 6: Validating path...
+2026-02-28 20:28:23 - src.solution_generator - INFO - Validation complete in 0.00s
+2026-02-28 20:28:23 - src.solution_generator - INFO - Path length: 1579.98
+2026-02-28 20:28:23 - src.solution_generator - INFO - Violations: 0
+2026-02-28 20:28:23 - src.solution_generator - INFO - Score: -579.98
+2026-02-28 20:28:23 - src.solution_generator - INFO - Valid: True
+2026-02-28 20:28:23 - src.solution_generator - INFO - Total processing time: 2.97s
+2026-02-28 20:28:23 - src.solution_generator - INFO - Performance: Cache hit rate: 100.0%, Memory warnings: 29
+2026-02-28 20:28:23 - src.solution_generator - INFO - ================================================================================
+2026-02-28 20:28:23 - src.solution_generator - INFO - Processing complete
+2026-02-28 20:28:23 - src.solution_generator - INFO - ================================================================================

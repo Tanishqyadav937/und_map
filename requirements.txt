@@ -1,0 +1,75 @@
+################################################################################
+# Urban Mission Planning Solution - Python Dependencies
+################################################################################
+# 
+# Installation:
+#   pip install -r requirements.txt
+#
+# For Google Colab:
+#   !pip install -r requirements.txt
+#
+# Tested with Python 3.8, 3.9, 3.10, 3.11, 3.12, 3.13
+# Compatible with Google Colab (CPU and GPU)
+################################################################################
+
+# Deep Learning Framework
+torch>=1.12.0,<3.0.0              # PyTorch deep learning framework
+torchvision>=0.13.0,<1.0.0        # PyTorch vision utilities
+segmentation-models-pytorch>=0.3.0,<1.0.0  # U-Net and DeepLabV3+ implementations
+
+# Computer Vision and Image Processing
+opencv-python>=4.6.0,<5.0.0       # OpenCV for image operations
+scikit-image>=0.19.0,<1.0.0       # Image processing algorithms (skeletonization, morphology)
+Pillow>=9.2.0,<11.0.0             # PIL for image I/O
+
+# Graph Processing and Algorithms
+networkx>=2.8.0,<4.0.0            # Graph data structures and algorithms (A* pathfinding)
+scipy>=1.9.0,<2.0.0               # Scientific computing (spatial algorithms)
+
+# Numerical Computing
+numpy>=1.23.0,<2.0.0              # Numerical arrays and operations
+
+# Utilities and Visualization
+tqdm>=4.64.0,<5.0.0               # Progress bars for batch processing
+matplotlib>=3.5.0,<4.0.0          # Plotting and visualization
+psutil>=5.9.0,<7.0.0              # System and process utilities (memory monitoring)
+
+# Testing Framework (Development)
+pytest>=7.1.0,<9.0.0              # Unit testing framework
+hypothesis>=6.54.0,<7.0.0         # Property-based testing
+pytest-cov>=3.0.0,<6.0.0          # Test coverage reporting
+
+################################################################################
+# Version Notes:
+################################################################################
+# 
+# PyTorch: Versions 1.12+ support both CPU and GPU. For specific CUDA versions,
+#          install from https://pytorch.org/get-started/locally/
+#
+# segmentation-models-pytorch: Provides pretrained U-Net and DeepLabV3+ models
+#                              with various encoder backbones (ResNet, EfficientNet)
+#
+# opencv-python: Headless version (opencv-python-headless) can be used in
+#                server environments without GUI support
+#
+# numpy: Version 1.23+ required for compatibility with Python 3.11+
+#        Version <2.0 for stability with current dependencies
+#
+# Google Colab: All packages are compatible with Colab's Python 3.10 environment
+#               Some packages may already be pre-installed in Colab
+#
+################################################################################
+# Optional Dependencies (Not Required):
+################################################################################
+#
+# For GPU acceleration (if not using PyTorch CUDA wheels):
+#   - CUDA Toolkit 11.7+ or 12.1+
+#   - cuDNN 8.5+
+#
+# For development:
+#   - black>=22.0.0          # Code formatting
+#   - flake8>=5.0.0          # Linting
+#   - mypy>=0.990            # Type checking
+#   - jupyter>=1.0.0         # Jupyter notebooks
+#
+################################################################################
