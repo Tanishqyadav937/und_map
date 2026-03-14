@@ -46,18 +46,15 @@ function Node({ position, color, size = 0.3, label }: any) {
 
 // Network connection line
 function Connection({ start, end, color = '#00d4ff' }: any) {
+  const points = [new THREE.Vector3(...start), new THREE.Vector3(...end)]
+  
   return (
-    <line>
-      <bufferGeometry>
-        <bufferAttribute
-          attach="attributes-position"
-          count={2}
-          array={new Float32Array([...start, ...end])}
-          itemSize={3}
-        />
-      </bufferGeometry>
-      <lineBasicMaterial color={color} transparent opacity={0.6} linewidth={2} />
-    </line>
+    <Line
+      points={points}
+      color={color}
+      lineWidth={2}
+      dashed={false}
+    />
   )
 }
 
