@@ -53,8 +53,7 @@ function Connection({ start, end, color = '#00d4ff' }: any) {
       points={points}
       color={color}
       lineWidth={2}
-      transparent
-      opacity={0.6}
+      dashed={false}
     />
   )
 }

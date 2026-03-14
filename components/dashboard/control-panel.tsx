@@ -63,11 +63,12 @@ export function ControlPanel() {
       const response = await apiClient.processImage({ image_path: filePath })
       
       const endTime = Date.now()
-      setProcessingTime(endTime - startTime)
+      const totalTime = endTime - startTime
+      setProcessingTime(totalTime)
 
       if (response.success) {
         setStatus('success')
-        setMessage(`Processing complete! Graph and solution generated. Time: ${(setProcessingTime/1000).toFixed(2)}s`)
+        setMessage(`Processing complete! Graph and solution generated. Time: ${(totalTime/1000).toFixed(2)}s`)
       } else {
         setStatus('error')
         setMessage(response.message || 'Processing failed')
